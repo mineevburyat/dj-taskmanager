@@ -25,10 +25,8 @@
         }
       }
     </style>
-
-    
-    <!-- Custom styles for this template -->
-    <link href="pricing.css" rel="stylesheet">
+    {% block styles %}
+    {% endblock %}
   </head>
   <body>
     
@@ -37,10 +35,8 @@
   <nav class="my-2 my-md-0 mr-md-3">
     <a class="p-2 text-dark" href="{% url 'main:index' %}">Главная</a>
     <a class="p-2 text-dark" href="{% url 'main:about' %}">О нас</a>
-    <a class="p-2 text-dark" href="{% url 'admin:index' %}">Админка</a>
-    <a class="p-2 text-dark" href="{% url 'main:create' %}">Добавить проект</a>
   </nav>
-  <a class="btn btn-outline-primary" href="#">Sign up</a>
+  <a class="btn  btn-outline-primary text-dark" href="{% url 'admin:index' %}">Админка</a>
 </div>
 
 {% block content %}

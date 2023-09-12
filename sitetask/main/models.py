@@ -1,6 +1,8 @@
 from django.db import models
 from django.utils.timezone import now
+from datetime import date
 # Create your models here.
+
 class Status(models.TextChoices):
     RUN = ('run', 'в работе')
     END = ('end', 'завершена')
@@ -68,7 +70,8 @@ class Task(models.Model):
         default=Status.RUN)
     start_date = models.DateField(
         'дата начала',
-        auto_now_add=True,
+        # auto_now_add=True,
+        default=now().date()
     )
     end_date = models.DateField(
         'дата завершения',
@@ -81,3 +84,26 @@ class Task(models.Model):
         
     def __str__(self):
         return self.title
+    
+    def get_days(self):
+        if not self.end_date:
+            num_day =  (now().date() - self.start_date).days
+            print(num_day % 10)
+            if num_day % 10 == 1:
+                sufx_day = 'день'
+            elif num_day % 10 in (2,3,4):
+                sufx_day = 'дня'
+            else:
+                sufx_day = 'дней'
+            return f"{num_day} {sufx_day}"
+        else:
+            num_day =  (self.end_date - self.start_date).days
+            print(num_day % 10)
+            if num_day % 10 == 1:
+                sufx_day = 'день'
+            elif num_day % 10 in (2,3,4):
+                sufx_day = 'дня'
+            else:
+                sufx_day = 'дней'
+            return f"{num_day} {sufx_day}"
+            

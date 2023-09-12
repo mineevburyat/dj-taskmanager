@@ -13,3 +13,6 @@ class ProjectAdmin(admin.ModelAdmin):
     list_display = ("title", "get_all_tasks_count", "get_run_tasks_count")
 
 
+@admin.register(Task)
+class TaskAdmin(admin.ModelAdmin):
+    pass
